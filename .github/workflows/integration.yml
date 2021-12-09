@@ -1,5 +1,9 @@
 name: Integration
 
+defaults:
+  run:
+    shell: bash --noprofile --norc -eo pipefail {0}
+
 on:
   push:
     branches: [master, main, force_test, release-*, staging, trying]
@@ -32,4 +36,3 @@ jobs:
 
     - name: ${{ matrix.test-setups.name }}
       run: ./scripts/end_to_end_tests.sh ${{ matrix.test-setups.image }}
-      shell: bash
